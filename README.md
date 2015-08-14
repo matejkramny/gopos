@@ -1,11 +1,17 @@
 # gopos
-ESC/POS library for Golang
+Distributed ESC/POS library for Golang with templating
 
 ## How to use
 
 Use REDIS publish
 
-## JSON:
+## Features..
+
+- ESC/POS command library
+- Templating (best feature imho)
+- You can print by pushing to redis, its very useful if there are many printers.
+
+## JSON pushed to redis:
 
 ```
 {
