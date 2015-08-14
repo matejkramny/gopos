@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"github.com/matejkramny/gopos"
 )
 
