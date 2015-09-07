@@ -8,7 +8,7 @@ func main() {
 	// your printer IP & Port
 	// In this case, the printer has Ethernet interface and assigned a static ip
 	// TM-T20II Ethernet
-	printer := gopos.POS("192.168.18.249", 9100)
+	printer := gopos.POS("192.168.0.66", 9100)
 
 	gopos.ConnectRedis()
 	defer (*gopos.Redis).Close()

@@ -2,7 +2,7 @@ package gopos
 
 import (
 	"fmt"
-	"encoding/json"
+	// "encoding/json"
 	"github.com/garyburd/redigo/redis"
 )
 
@@ -21,19 +21,20 @@ func ConnectRedis() error {
 
 func RedisListen(printer *ESCPOS) {
 	sub := redis.PubSubConn{Conn: *Redis}
-	sub.Subscribe("print")
+	sub.Subscribe("oc_print.receipt")
 
 	for {
 		switch n := sub.Receive().(type) {
 		case redis.Message:
 			fmt.Printf("Got message: %s\n", n.Data)
 
-			var data printData
-			if err := json.Unmarshal(n.Data, &data); err != nil {
-				panic(err)
-			}
+			// var data printData
+			// if err := json.Unmarshal(n.Data, &data); err != nil {
+			// 	panic(err)
+			// }
 
-			printer.PrintTemplate(data.Print)
+			printer.Connection.Write(n.Data)
+			// printer.PrintTemplate(data.Print)
 		case error:
 			fmt.Printf("Redis error: %v\n", n)
 			return
